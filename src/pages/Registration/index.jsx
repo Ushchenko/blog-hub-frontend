@@ -66,6 +66,7 @@ export const Registration = () => {
           {...register('fullName', {required: "Укажите ваше имя"})}
           className={styles.field} 
           label="Полное имя" 
+          autoComplete="off"
           fullWidth
         />
         <TextField 
@@ -74,6 +75,7 @@ export const Registration = () => {
           {...register('email', {required: "Укажите почту"})}
           className={styles.field} 
           label="E-Mail" 
+          autoComplete="off"
           fullWidth 
         />
         <TextField 

@@ -56,9 +56,9 @@ export const Login = () => {
           error={Boolean(errors.email?.message)}
           helperText={errors.email?.message}
           type="email"
+          autoComplete="off"
           fullWidth
           {...register('email', {required: "Укажите почту"})}
-          autoComplete="off"
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -76,6 +76,7 @@ export const Login = () => {
         <TextField 
           className={styles.field} 
           label="Пароль" 
+          autoComplete="off"
           fullWidth 
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
