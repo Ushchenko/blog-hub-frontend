@@ -29,6 +29,8 @@ export const Post = ({
 }) => {
   const dispatch = useDispatch()
 
+  console.log(tags)
+
   if (isLoading) {
     return <PostSkeleton />;
   }
@@ -57,7 +59,6 @@ export const Post = ({
         <img
           className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
           src={imageUrl}
-          alt={title}
         />
       )}
       <div className={styles.wrapper}>
@@ -67,11 +68,16 @@ export const Post = ({
             {isFullPost ? title : <Link to={`/posts/${id}`}>{title}</Link>}
           </h2>
           <ul className={styles.tags}>
-            {tags.map((name) => (
+            {tags.flatMap((tag) => tag.split(",").map((name) => name.trim())).map((name) => {
               <li key={name}>
                 <Link to={`/tag/${name}`}>#{name}</Link>
               </li>
-            ))}
+            })}
+            {/* {tags.map((name) => (
+              <li key={name}>
+                <Link to={`/tag/${name}`}>#{name}</Link>
+              </li>
+            ))} */}
           </ul>
           {children && <div className={styles.content}>{children}</div>}
           <ul className={styles.postDetails}>
