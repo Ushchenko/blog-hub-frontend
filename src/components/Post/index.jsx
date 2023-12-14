@@ -28,6 +28,7 @@ export const Post = ({
   isEditable,
 }) => {
   const dispatch = useDispatch()
+  const splitTags = tags.map(tag => tag.split(','))
 
   if (isLoading) {
     return <PostSkeleton />;
@@ -71,9 +72,9 @@ export const Post = ({
                 <Link to={`/tag/${name}`}>#{name}</Link>
               </li>
             })} */}
-            {tags.map((tag) => tag.split(',') (
-              <li key={tag}>
-                <Link to={`/tag/${tag}`}>#{tag}</Link>
+            {splitTags.map((name) => (
+              <li key={name}>
+                <Link to={`/tag/${name}`}>#{name}</Link>
               </li>
             ))}
           </ul>
