@@ -12,12 +12,19 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { fetchRegister, selectIsAuth } from "../../redux/slices/auth";
+import { IconButton, InputAdornment } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 export const Registration = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth)
 
-  const { register, handleSubmit, setError, formState: { errors, isValid }} = useForm({
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
+  const { register, handleSubmit, formState: { errors, isValid }} = useForm({
     defaultValues: {
       fullName: '',
       email: '',
@@ -54,24 +61,43 @@ export const Registration = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField 
-            error={Boolean(errors.fullName?.message)}
-            helperText={errors.fullName?.message}
-            {...register('fullName', {required: "Укажите ваше имя"})}
-            className={styles.field} 
-            label="Полное имя" 
-            fullWidth />
+          error={Boolean(errors.fullName?.message)}
+          helperText={errors.fullName?.message}
+          {...register('fullName', {required: "Укажите ваше имя"})}
+          className={styles.field} 
+          label="Полное имя" 
+          fullWidth
+        />
         <TextField 
-            error={Boolean(errors.email?.message)}
-            helperText={errors.email?.message}
-            {...register('email', {required: "Укажите почту"})}
-            className={styles.field} 
-            label="E-Mail" 
-            fullWidth />
+          error={Boolean(errors.email?.message)}
+          helperText={errors.email?.message}
+          {...register('email', {required: "Укажите почту"})}
+          className={styles.field} 
+          label="E-Mail" 
+          fullWidth 
+        />
         <TextField 
-            error={Boolean(errors.password?.message)}
-            helperText={errors.password?.message}
-            {...register('password', {required: "Укажите пароль"})}
-            className={styles.field} label="Пароль" fullWidth />
+          error={Boolean(errors.password?.message)}
+          helperText={errors.password?.message}
+          {...register('password', {required: "Укажите пароль"})}
+          className={styles.field} 
+          type={showPassword ? "text" : "password"}
+          label="Пароль" 
+          fullWidth 
+          InputProps={ {
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton 
+                   aria-label="toggle password visibility"
+                   onClick={handleClickShowPassword}
+                   onMouseDown={handleMouseDownPassword}
+                >
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            )
+          }}
+        />
         <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
           Зарегистрироваться
         </Button>

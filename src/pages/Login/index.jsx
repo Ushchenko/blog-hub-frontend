@@ -52,6 +52,19 @@ export const Login = () => {
           type="email"
           fullWidth
           {...register('email', {required: "Укажите почту"})}
+          InputProps={ {
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton 
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            )
+          }}
         />
         <TextField 
           className={styles.field} 
