@@ -29,8 +29,6 @@ export const Post = ({
 }) => {
   const dispatch = useDispatch()
 
-  console.log(tags)
-
   if (isLoading) {
     return <PostSkeleton />;
   }
@@ -68,16 +66,16 @@ export const Post = ({
             {isFullPost ? title : <Link to={`/posts/${id}`}>{title}</Link>}
           </h2>
           <ul className={styles.tags}>
-            {tags.flatMap((tag) => tag.split(",").map((name) => name.trim())).map((name) => {
+            {/* {tags.flatMap((tag) => tag.split(",").map((name) => name.trim())).map((name) => {
               <li key={name}>
                 <Link to={`/tag/${name}`}>#{name}</Link>
               </li>
-            })}
-            {/* {tags.map((name) => (
-              <li key={name}>
-                <Link to={`/tag/${name}`}>#{name}</Link>
+            })} */}
+            {tags.map((tag) => tag.split(',') (
+              <li key={tag}>
+                <Link to={`/tag/${tag}`}>#{tag}</Link>
               </li>
-            ))} */}
+            ))}
           </ul>
           {children && <div className={styles.content}>{children}</div>}
           <ul className={styles.postDetails}>
