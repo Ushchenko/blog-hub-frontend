@@ -4,6 +4,8 @@ import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -59,6 +61,16 @@ export const Login = () => {
           autoComplete="off"
           fullWidth
           {...register('email', {required: "Укажите почту"})}
+        />
+        <TextField 
+          className={styles.field} 
+          label="Пароль" 
+          type={showPassword ? "text" : "password"}
+          autoComplete="off"
+          fullWidth 
+          error={Boolean(errors.password?.message)}
+          helperText={errors.password?.message}
+          {...register('password', {required: "Укажите пароль"})}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -67,20 +79,11 @@ export const Login = () => {
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
                 >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
             )
           }}
-        />
-        <TextField 
-          className={styles.field} 
-          label="Пароль" 
-          autoComplete="off"
-          fullWidth 
-          error={Boolean(errors.password?.message)}
-          helperText={errors.password?.message}
-          {...register('password', {required: "Укажите пароль"})}
         />
         <Button type="submit" size="large" variant="contained" fullWidth>
           Войти

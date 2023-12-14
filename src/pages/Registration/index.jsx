@@ -8,7 +8,7 @@ import Avatar from '@mui/material/Avatar';
 
 import styles from './Login.module.scss';
 
-
+import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -91,11 +91,11 @@ export const Registration = () => {
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton 
-                   aria-label="toggle password visibility"
-                   onClick={handleClickShowPassword}
-                   onMouseDown={handleMouseDownPassword}
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
                 >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
             )
