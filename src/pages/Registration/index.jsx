@@ -83,6 +83,7 @@ export const Registration = () => {
           className={styles.field} 
           type={showPassword ? "text" : "password"}
           label="Пароль" 
+          autoComplete="off"
           fullWidth 
           InputProps={ {
             endAdornment: (

@@ -58,6 +58,7 @@ export const Login = () => {
           type="email"
           fullWidth
           {...register('email', {required: "Укажите почту"})}
+          autoComplete="off"
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
