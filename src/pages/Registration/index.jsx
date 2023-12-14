@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
+import { TextField, IconButton, InputAdornment } from '@mui/material/TextField';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
@@ -12,17 +13,16 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { fetchRegister, selectIsAuth } from "../../redux/slices/auth";
-import { IconButton, InputAdornment } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 export const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth)
 
-  const handleClickShowPassword = () => setShowPassword(!showPassword);
-  const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
   const { register, handleSubmit, formState: { errors, isValid }} = useForm({
     defaultValues: {

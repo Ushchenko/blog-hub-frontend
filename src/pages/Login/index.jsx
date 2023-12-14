@@ -1,6 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
+import { TextField, IconButton, InputAdornment } from '@mui/material/TextField';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
@@ -11,6 +12,11 @@ import styles from "./Login.module.scss";
 import { fetchAuth, selectIsAuth } from "../../redux/slices/auth";
 
 export const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
   const isAuth = useSelector(selectIsAuth)
   const dispatch = useDispatch();
 
@@ -52,7 +58,7 @@ export const Login = () => {
           type="email"
           fullWidth
           {...register('email', {required: "Укажите почту"})}
-          InputProps={ {
+          InputProps={{
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton 
