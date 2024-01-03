@@ -38,7 +38,7 @@ const authSlice = createSlice({
                 state.data = null
             })
             .addCase(fetchAuth.fulfilled, (state, action) => {
-                state.status = 'loading'
+                state.status = 'loaded'
                 state.data = action.payload
             })
             .addCase(fetchAuth.rejected, (state) => {
@@ -51,7 +51,7 @@ const authSlice = createSlice({
                 state.data = null
             })
             .addCase(fetchAuthMe.fulfilled, (state, action) => {
-                state.status = 'loading'
+                state.status = 'loaded'
                 state.data = action.payload
             })
             .addCase(fetchAuthMe.rejected, (state) => {
@@ -64,7 +64,7 @@ const authSlice = createSlice({
                 state.data = null
             })
             .addCase(fetchRegister.fulfilled, (state, action) => {
-                state.status = 'loading'
+                state.status = 'loaded'
                 state.data = action.payload
             })
             .addCase(fetchRegister.rejected, (state) => {

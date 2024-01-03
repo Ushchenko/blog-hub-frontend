@@ -13,6 +13,7 @@ export const Home = () => {
 	const dispatch = useDispatch();
   const userData = useSelector(state => state.auth.data)
 	const { posts } = useSelector(state => state.posts);
+  console.log(posts.items.imageUrl)
 
 	const isPostsLoading = posts.state === 'loading'
 
